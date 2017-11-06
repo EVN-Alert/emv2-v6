@@ -9,6 +9,7 @@
 import UIKit
 import MapKit
 import AudioToolbox
+import AVFoundation
 
 class ViewController: UIViewController, CLLocationManagerDelegate {
     var latitude: Double?
@@ -16,6 +17,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
     var altitude: Double?
     var myTimer: Timer? = nil
     let locationManager = CLLocationManager()
+    
     @IBOutlet weak var myLatitude: UITextField!
     @IBOutlet weak var myLongitude: UITextField!
     @IBOutlet weak var evLatitude: UITextField!
@@ -32,6 +34,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
             myTimer?.invalidate()
             myTimer = nil
         }
+    
     }
     
     override func viewDidLoad() {
@@ -102,6 +105,8 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
                         }))
                         self.present(alert, animated: true, completion: nil)
                                 AudioServicesPlayAlertSound(SystemSoundID(kSystemSoundID_Vibrate))
+                        let systemSoundID: SystemSoundID = 1333
+                        AudioServicesPlaySystemSound(systemSoundID)
                     }
                 }
             } catch {
